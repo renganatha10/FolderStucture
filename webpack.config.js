@@ -1,11 +1,11 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: ['babel-polyfill',
     'webpack-hot-middleware/client',
-    './index'
+    './app'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -15,6 +15,14 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+      mangle: true,
+      sourcemap: false,
+      beautify: false,
+      dead_code: true
+    }),
     new webpack.NoErrorsPlugin()
   ],
   module: {
@@ -26,7 +34,25 @@ module.exports = {
         query: {
           presets: ['react', 'es2015', 'react-hmre', 'stage-0']
         }
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loader: 'style!css!sass'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      },
+      {
+        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        loader: 'file',
+      },
+      {
+        test: /\.(jpg|png|gif)$/,
+        include: /images/,
+        loader: 'url'
       }
     ]
   }
-}
+};

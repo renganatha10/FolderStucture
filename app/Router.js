@@ -14,20 +14,27 @@ import PawnDetail from './containers/PawnDetailContainer'
 import WholeRegister from './containers/WholeRegisterContainer'
 import IntrestReceipt from './containers/InterestReceiptContainer'
 
+export function routes(){
+  return(
+    <Route path="/" component={IndexPage}>
+      <Route path="/daybook" component={DayBook}/>
+      <Route path="/depositform" component={DepositForm}/>
+      <Route path="/depositordetail" component={DepositorDetail}/>
+      <Route path="/enauma" component={Enamuna}/>
+      <Route path="/fnamuna" component={Fnauma}/>
+      <Route path="/pawnregister" component={PawnRegister}/>
+      <Route path="/pawndetail" component={PawnDetail}/>
+      <Route path="/wholeregister" component={WholeRegister}/>
+      <Route path="/interestreceipt" component={IntrestReceipt}/>
+  </Route>
+  )
+}
+
 export default class MainRouter extends Component {
     render() {
         return (
             <Router history={browserHistory}>
-               <Route path="/" component={IndexPage}/>
-               <Route path="/daybook" component={DayBook}/>
-               <Route path="/depositform" component={DepositForm}/>
-               <Route path="/depositordetail" component={DepositorDetail}/>
-               <Route path="/enauma" component={Enamuna}/>
-               <Route path="/fnamuna" component={Fnauma}/>
-               <Route path="/pawnregister" component={PawnRegister}/>
-               <Route path="/pawndetail" component={PawnDetail}/>
-               <Route path="/wholeregister" component={WholeRegister}/>
-               <Route path="/interestreceipt" component={IntrestReceipt}/>
+              {routes()}
              </Router>
         );
     }

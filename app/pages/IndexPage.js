@@ -1,5 +1,10 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router'
+import './../styles/main.scss';
+import 'bootstrap/dist/css/bootstrap.css';
+import * as fonts from 'bootstrap/fonts'
+import './../styles/main.scss';
+
 
 export default class IndexPage extends Component {
 
